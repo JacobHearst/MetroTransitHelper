@@ -7,18 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06D13ADC284A429600A359E0 /* MetroTransitBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13ADB284A429600A359E0 /* MetroTransitBoardApp.swift */; };
+		0672D28C284FE52C00AF75A0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0672D28B284FE52C00AF75A0 /* SearchBar.swift */; };
+		06D13ADC284A429600A359E0 /* MetroTransitBoardiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13ADB284A429600A359E0 /* MetroTransitBoardiOSApp.swift */; };
 		06D13ADE284A429600A359E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13ADD284A429600A359E0 /* ContentView.swift */; };
 		06D13AE0284A429700A359E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06D13ADF284A429700A359E0 /* Assets.xcassets */; };
 		06D13AE3284A429700A359E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06D13AE2284A429700A359E0 /* Preview Assets.xcassets */; };
+		06D13AEB284A42BA00A359E0 /* MetroTransitKit in Frameworks */ = {isa = PBXBuildFile; productRef = 06D13AEA284A42BA00A359E0 /* MetroTransitKit */; };
+		06D13AF0284A437400A359E0 /* DeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13AEF284A437400A359E0 /* DeparturesView.swift */; };
+		06D13AF2284A463700A359E0 /* DeparturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13AF1284A463700A359E0 /* DeparturesViewModel.swift */; };
+		06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13AF7284A4C5400A359E0 /* DeparturesListView.swift */; };
+		06D13B01284E3FE400A359E0 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13B00284E3FE400A359E0 /* Departure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		06D13AD8284A429600A359E0 /* MetroTransitBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroTransitBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		06D13ADB284A429600A359E0 /* MetroTransitBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroTransitBoardApp.swift; sourceTree = "<group>"; };
+		0672D28B284FE52C00AF75A0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		06D13AD8284A429600A359E0 /* MetroTransitBoardiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroTransitBoardiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06D13ADB284A429600A359E0 /* MetroTransitBoardiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroTransitBoardiOSApp.swift; sourceTree = "<group>"; };
 		06D13ADD284A429600A359E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		06D13ADF284A429700A359E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06D13AE2284A429700A359E0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		06D13AEF284A437400A359E0 /* DeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesView.swift; sourceTree = "<group>"; };
+		06D13AF1284A463700A359E0 /* DeparturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesViewModel.swift; sourceTree = "<group>"; };
+		06D13AF7284A4C5400A359E0 /* DeparturesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesListView.swift; sourceTree = "<group>"; };
+		06D13B00284E3FE400A359E0 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,16 +37,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D13AEB284A42BA00A359E0 /* MetroTransitKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0672D28A284FE52000AF75A0 /* SharedUI */ = {
+			isa = PBXGroup;
+			children = (
+				0672D28B284FE52C00AF75A0 /* SearchBar.swift */,
+			);
+			path = SharedUI;
+			sourceTree = "<group>";
+		};
 		06D13ACF284A429600A359E0 = {
 			isa = PBXGroup;
 			children = (
-				06D13ADA284A429600A359E0 /* MetroTransitBoard */,
+				06D13ADA284A429600A359E0 /* MetroTransitBoardiOS */,
 				06D13AD9284A429600A359E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,20 +63,23 @@
 		06D13AD9284A429600A359E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06D13AD8284A429600A359E0 /* MetroTransitBoard.app */,
+				06D13AD8284A429600A359E0 /* MetroTransitBoardiOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		06D13ADA284A429600A359E0 /* MetroTransitBoard */ = {
+		06D13ADA284A429600A359E0 /* MetroTransitBoardiOS */ = {
 			isa = PBXGroup;
 			children = (
-				06D13ADB284A429600A359E0 /* MetroTransitBoardApp.swift */,
+				0672D28A284FE52000AF75A0 /* SharedUI */,
+				06D13AFF284E3FD400A359E0 /* Extensions */,
+				06D13AEC284A435800A359E0 /* Scenes */,
+				06D13ADB284A429600A359E0 /* MetroTransitBoardiOSApp.swift */,
 				06D13ADD284A429600A359E0 /* ContentView.swift */,
 				06D13ADF284A429700A359E0 /* Assets.xcassets */,
 				06D13AE1284A429700A359E0 /* Preview Content */,
 			);
-			path = MetroTransitBoard;
+			path = MetroTransitBoardiOS;
 			sourceTree = "<group>";
 		};
 		06D13AE1284A429700A359E0 /* Preview Content */ = {
@@ -67,12 +90,46 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		06D13AEC284A435800A359E0 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				06D13AF5284A4C3800A359E0 /* Departures */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		06D13AF5284A4C3800A359E0 /* Departures */ = {
+			isa = PBXGroup;
+			children = (
+				06D13AF6284A4C4300A359E0 /* DeparturesList */,
+				06D13AEF284A437400A359E0 /* DeparturesView.swift */,
+				06D13AF1284A463700A359E0 /* DeparturesViewModel.swift */,
+			);
+			path = Departures;
+			sourceTree = "<group>";
+		};
+		06D13AF6284A4C4300A359E0 /* DeparturesList */ = {
+			isa = PBXGroup;
+			children = (
+				06D13AF7284A4C5400A359E0 /* DeparturesListView.swift */,
+			);
+			path = DeparturesList;
+			sourceTree = "<group>";
+		};
+		06D13AFF284E3FD400A359E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				06D13B00284E3FE400A359E0 /* Departure.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		06D13AD7284A429600A359E0 /* MetroTransitBoard */ = {
+		06D13AD7284A429600A359E0 /* MetroTransitBoardiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06D13AE6284A429700A359E0 /* Build configuration list for PBXNativeTarget "MetroTransitBoard" */;
+			buildConfigurationList = 06D13AE6284A429700A359E0 /* Build configuration list for PBXNativeTarget "MetroTransitBoardiOS" */;
 			buildPhases = (
 				06D13AD4284A429600A359E0 /* Sources */,
 				06D13AD5284A429600A359E0 /* Frameworks */,
@@ -82,9 +139,12 @@
 			);
 			dependencies = (
 			);
-			name = MetroTransitBoard;
+			name = MetroTransitBoardiOS;
+			packageProductDependencies = (
+				06D13AEA284A42BA00A359E0 /* MetroTransitKit */,
+			);
 			productName = MetroTransitBoard;
-			productReference = 06D13AD8284A429600A359E0 /* MetroTransitBoard.app */;
+			productReference = 06D13AD8284A429600A359E0 /* MetroTransitBoardiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +162,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 06D13AD3284A429600A359E0 /* Build configuration list for PBXProject "MetroTransitBoard" */;
+			buildConfigurationList = 06D13AD3284A429600A359E0 /* Build configuration list for PBXProject "MetroTransitBoardiOS" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -111,11 +171,14 @@
 				Base,
 			);
 			mainGroup = 06D13ACF284A429600A359E0;
+			packageReferences = (
+				06D13AE9284A42BA00A359E0 /* XCRemoteSwiftPackageReference "metrotransitkit" */,
+			);
 			productRefGroup = 06D13AD9284A429600A359E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06D13AD7284A429600A359E0 /* MetroTransitBoard */,
+				06D13AD7284A429600A359E0 /* MetroTransitBoardiOS */,
 			);
 		};
 /* End PBXProject section */
@@ -138,7 +201,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				06D13ADE284A429600A359E0 /* ContentView.swift in Sources */,
-				06D13ADC284A429600A359E0 /* MetroTransitBoardApp.swift in Sources */,
+				06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */,
+				06D13B01284E3FE400A359E0 /* Departure.swift in Sources */,
+				06D13AF0284A437400A359E0 /* DeparturesView.swift in Sources */,
+				06D13ADC284A429600A359E0 /* MetroTransitBoardiOSApp.swift in Sources */,
+				0672D28C284FE52C00AF75A0 /* SearchBar.swift in Sources */,
+				06D13AF2284A463700A359E0 /* DeparturesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +332,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MetroTransitBoard/Preview Content\"";
-				DEVELOPMENT_TEAM = F8SAUD58HS;
+				DEVELOPMENT_ASSET_PATHS = "\"MetroTransitBoardiOS/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -280,8 +349,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.hearst.MetroTransitBoard;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hearst.MetroTransitBoardiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -293,10 +363,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MetroTransitBoard/Preview Content\"";
-				DEVELOPMENT_TEAM = F8SAUD58HS;
+				DEVELOPMENT_ASSET_PATHS = "\"MetroTransitBoardiOS/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -309,8 +380,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.hearst.MetroTransitBoard;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.hearst.MetroTransitBoardiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -320,7 +392,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06D13AD3284A429600A359E0 /* Build configuration list for PBXProject "MetroTransitBoard" */ = {
+		06D13AD3284A429600A359E0 /* Build configuration list for PBXProject "MetroTransitBoardiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06D13AE4284A429700A359E0 /* Debug */,
@@ -329,7 +401,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06D13AE6284A429700A359E0 /* Build configuration list for PBXNativeTarget "MetroTransitBoard" */ = {
+		06D13AE6284A429700A359E0 /* Build configuration list for PBXNativeTarget "MetroTransitBoardiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06D13AE7284A429700A359E0 /* Debug */,
@@ -339,6 +411,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		06D13AE9284A42BA00A359E0 /* XCRemoteSwiftPackageReference "metrotransitkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jacobhearst/metrotransitkit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		06D13AEA284A42BA00A359E0 /* MetroTransitKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06D13AE9284A42BA00A359E0 /* XCRemoteSwiftPackageReference "metrotransitkit" */;
+			productName = MetroTransitKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 06D13AD0284A429600A359E0 /* Project object */;
 }

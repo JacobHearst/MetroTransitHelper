@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "metrotransitkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jacobhearst/metrotransitkit",
+      "state" : {
+        "revision" : "686f77c45aad02c5357c7b19887ed9d46d2f66fe",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}
