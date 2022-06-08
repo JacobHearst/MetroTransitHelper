@@ -12,16 +12,20 @@ struct DeparturesListView: View {
     var departures: [Departure]
 
     var body: some View {
-        List(departures) { departure in
-            HStack {
-                Text(departure.routeShortName ?? "No shortname")
-                Spacer()
-                Text(departure.departureText ?? "No text")
-                    .padding([.leading, .trailing])
-                    .foregroundColor(.white)
-                    .background {
-                        Capsule().foregroundColor(.blue)
-                    }
+        if departures.isEmpty {
+            Text("Press Go to see departures")
+        } else {
+            List(departures) { departure in
+                HStack {
+                    Text(departure.label)
+                    Spacer()
+                    Text(departure.departureText ?? "No text")
+                        .padding([.leading, .trailing])
+                        .foregroundColor(.white)
+                        .background {
+                            Capsule().foregroundColor(.blue)
+                        }
+                }
             }
         }
     }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0672D28C284FE52C00AF75A0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0672D28B284FE52C00AF75A0 /* SearchBar.swift */; };
+		0672D2912850D3E200AF75A0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0672D2902850D3E200AF75A0 /* MapKit.framework */; };
+		0672D2932850D42A00AF75A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0672D2922850D42A00AF75A0 /* MapView.swift */; };
+		06C9FA3F2850E7CE00A80444 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C9FA3E2850E7CE00A80444 /* MapViewModel.swift */; };
 		06D13ADC284A429600A359E0 /* MetroTransitBoardiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13ADB284A429600A359E0 /* MetroTransitBoardiOSApp.swift */; };
 		06D13ADE284A429600A359E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13ADD284A429600A359E0 /* ContentView.swift */; };
 		06D13AE0284A429700A359E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06D13ADF284A429700A359E0 /* Assets.xcassets */; };
@@ -21,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		0672D28B284FE52C00AF75A0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		0672D28E2850D3E200AF75A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0672D2902850D3E200AF75A0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0672D2922850D42A00AF75A0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		06C9FA3E2850E7CE00A80444 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		06D13AD8284A429600A359E0 /* MetroTransitBoardiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroTransitBoardiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06D13ADB284A429600A359E0 /* MetroTransitBoardiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroTransitBoardiOSApp.swift; sourceTree = "<group>"; };
 		06D13ADD284A429600A359E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0672D2912850D3E200AF75A0 /* MapKit.framework in Frameworks */,
 				06D13AEB284A42BA00A359E0 /* MetroTransitKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,11 +60,29 @@
 			path = SharedUI;
 			sourceTree = "<group>";
 		};
+		0672D28D2850D3BC00AF75A0 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0672D2922850D42A00AF75A0 /* MapView.swift */,
+				06C9FA3E2850E7CE00A80444 /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		0672D28F2850D3E200AF75A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0672D2902850D3E200AF75A0 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		06D13ACF284A429600A359E0 = {
 			isa = PBXGroup;
 			children = (
 				06D13ADA284A429600A359E0 /* MetroTransitBoardiOS */,
 				06D13AD9284A429600A359E0 /* Products */,
+				0672D28F2850D3E200AF75A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +97,7 @@
 		06D13ADA284A429600A359E0 /* MetroTransitBoardiOS */ = {
 			isa = PBXGroup;
 			children = (
+				0672D28E2850D3E200AF75A0 /* Info.plist */,
 				0672D28A284FE52000AF75A0 /* SharedUI */,
 				06D13AFF284E3FD400A359E0 /* Extensions */,
 				06D13AEC284A435800A359E0 /* Scenes */,
@@ -93,6 +120,7 @@
 		06D13AEC284A435800A359E0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				0672D28D2850D3BC00AF75A0 /* Map */,
 				06D13AF5284A4C3800A359E0 /* Departures */,
 			);
 			path = Scenes;
@@ -201,12 +229,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				06D13ADE284A429600A359E0 /* ContentView.swift in Sources */,
+				0672D2932850D42A00AF75A0 /* MapView.swift in Sources */,
 				06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */,
 				06D13B01284E3FE400A359E0 /* Departure.swift in Sources */,
 				06D13AF0284A437400A359E0 /* DeparturesView.swift in Sources */,
 				06D13ADC284A429600A359E0 /* MetroTransitBoardiOSApp.swift in Sources */,
 				0672D28C284FE52C00AF75A0 /* SearchBar.swift in Sources */,
 				06D13AF2284A463700A359E0 /* DeparturesViewModel.swift in Sources */,
+				06C9FA3F2850E7CE00A80444 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +369,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MetroTransitBoardiOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -370,6 +401,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MetroTransitBoardiOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

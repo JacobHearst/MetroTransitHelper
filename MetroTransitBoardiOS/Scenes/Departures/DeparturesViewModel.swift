@@ -56,12 +56,14 @@ final class DeparturesViewModel: ObservableObject {
     }
     @Published var placeCodeSelection = ""
 
+    @Published var error: String? = nil
+
     init() {
         metroTransitClient.getRoutes { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):
-                    print(err)
+                    self.error = err.localizedDescription
                 case .success(let routes):
                     self.routes = routes
                     self.filteredRoutes = routes
@@ -90,7 +92,7 @@ final class DeparturesViewModel: ObservableObject {
 
                     self.getPlaces(for: routeId, direction: firstDirection.directionId)
                 case .failure(let err):
-                    print(err)
+                    self.error = err.localizedDescription
                 }
             }
         }
@@ -101,7 +103,7 @@ final class DeparturesViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):
-                    print(err)
+                    self.error = err.localizedDescription
                 case .success(let places):
                     self.places = places
                     self.filteredPlaces = places
@@ -112,6 +114,7 @@ final class DeparturesViewModel: ObservableObject {
     }
 
     func getDepartures() {
+        self.error = nil
         if departuresSourceType == 0 {
             getDeparturesByRoute()
         } else {
@@ -126,15 +129,20 @@ final class DeparturesViewModel: ObservableObject {
                 case .success(let nexTripResult):
                     self.departures = nexTripResult.departures ?? []
                 case .failure(let err):
-                    print(err)
+                    self.error = err.localizedDescription
                 }
             }
         }
     }
 
     func getDeparturesByStop() {
+        guard !stopNumber.isEmpty else {
+            error = "Please enter a stop number"
+            return
+        }
+
         guard let stopId = Int(stopNumber) else {
-            print("Stop id '\(stopNumber)' couldn't be cast to an int")
+            error = "Invalid stop number"
             return
         }
 
@@ -142,7 +150,7 @@ final class DeparturesViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):
-                    print(err)
+                    self.error = err.localizedDescription
                 case .success(let nexTripResult):
                     self.departures = nexTripResult.departures ?? []
                 }

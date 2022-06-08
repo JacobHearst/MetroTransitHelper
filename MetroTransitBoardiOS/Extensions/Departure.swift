@@ -13,10 +13,10 @@ extension Departure: Identifiable {
 
     var label: String {
         guard let shortName = routeShortName,
-              let departureText = departureText else {
-            return "Error"
+              let description = description else {
+            return "Missing data"
         }
 
-        return "\(shortName): \(departureText)"
+        return "\(shortName) \(description)"
     }
 }

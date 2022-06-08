@@ -14,7 +14,7 @@ struct ContentView: View {
                 Image(systemName: "clock")
                 Text("Departures")
             }
-            Text("Tab Content 2").tabItem {
+            MapView().tabItem {
                 Image(systemName: "map")
                 Text("Map")
             }
