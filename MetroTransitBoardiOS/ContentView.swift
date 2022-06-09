@@ -8,16 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 2
     var body: some View {
-        TabView {
-            DeparturesView().tabItem {
-                Image(systemName: "clock")
-                Text("Departures")
-            }
-            MapView().tabItem {
-                Image(systemName: "map")
-                Text("Map")
-            }
+        TabView(selection: $selectedTab) {
+            DeparturesView()
+                .tabItem {
+                    Image(systemName: "clock")
+                    Text("Departures")
+                }
+                .tag(0)
+            Text("Favorites")
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Favorites")
+                }
+                .tag(1)
+            RoutesView()
+                .tabItem {
+                    Image(systemName: "bus")
+                    Text("Routes")
+                }
+                .tag(2)
         }
     }
 }

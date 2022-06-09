@@ -12,10 +12,8 @@ struct DeparturesListView: View {
     var departures: [Departure]
 
     var body: some View {
-        if departures.isEmpty {
-            Text("Press Go to see departures")
-        } else {
-            List(departures) { departure in
+        List(departures) { departure in
+            NavigationLink(destination: MapView(routeId: departure.routeId!, tripId: departure.tripId), label: {
                 HStack {
                     Text(departure.label)
                     Spacer()
@@ -26,7 +24,7 @@ struct DeparturesListView: View {
                             Capsule().foregroundColor(.blue)
                         }
                 }
-            }
+            })
         }
     }
 }
