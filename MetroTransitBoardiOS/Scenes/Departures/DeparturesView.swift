@@ -23,6 +23,7 @@ struct DeparturesView: View {
                             Text("Route").tag(0)
                             Text("Stop").tag(1)
                         }.pickerStyle(SegmentedPickerStyle())
+
                         if viewModel.departuresSourceType == 0 {
                             makeRouteSelector()
                         } else {

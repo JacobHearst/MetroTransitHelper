@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedTab = 2
+    @State private var selectedTab = 1
     var body: some View {
         TabView(selection: $selectedTab) {
             DeparturesView()
@@ -17,7 +17,7 @@ struct ContentView: View {
                     Text("Departures")
                 }
                 .tag(0)
-            Text("Favorites")
+            FavoritesView()
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")

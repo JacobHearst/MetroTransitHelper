@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06537950285CAF490088E809 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0653794F285CAF490088E809 /* FavoritesView.swift */; };
+		06537952285CB18F0088E809 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537951285CB18F0088E809 /* FavoritesViewModel.swift */; };
+		06537954285CB28A0088E809 /* AddFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537953285CB28A0088E809 /* AddFavoriteView.swift */; };
+		06537957285CB2E00088E809 /* AddFavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537956285CB2E00088E809 /* AddFavoriteViewModel.swift */; };
 		065C8CAD28511E0800A129F9 /* RoutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAB28511E0800A129F9 /* RoutesView.swift */; };
 		065C8CAE28511E0800A129F9 /* RoutesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAC28511E0800A129F9 /* RoutesViewModel.swift */; };
 		065C8CB028511EA600A129F9 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAF28511EA600A129F9 /* RouteDetailView.swift */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0653794F285CAF490088E809 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		06537951285CB18F0088E809 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		06537953285CB28A0088E809 /* AddFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteView.swift; sourceTree = "<group>"; };
+		06537956285CB2E00088E809 /* AddFavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteViewModel.swift; sourceTree = "<group>"; };
 		065C8CAB28511E0800A129F9 /* RoutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesView.swift; sourceTree = "<group>"; };
 		065C8CAC28511E0800A129F9 /* RoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesViewModel.swift; sourceTree = "<group>"; };
 		065C8CAF28511EA600A129F9 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
@@ -64,6 +72,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0653794E285CAF350088E809 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				06537955285CB2D00088E809 /* AddFavoriteView */,
+				0653794F285CAF490088E809 /* FavoritesView.swift */,
+				06537951285CB18F0088E809 /* FavoritesViewModel.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		06537955285CB2D00088E809 /* AddFavoriteView */ = {
+			isa = PBXGroup;
+			children = (
+				06537953285CB28A0088E809 /* AddFavoriteView.swift */,
+				06537956285CB2E00088E809 /* AddFavoriteViewModel.swift */,
+			);
+			path = AddFavoriteView;
+			sourceTree = "<group>";
+		};
 		065C8CAA28511DE800A129F9 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +179,7 @@
 		06D13AEC284A435800A359E0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				0653794E285CAF350088E809 /* Favorites */,
 				065C8CAA28511DE800A129F9 /* Routes */,
 				0672D28D2850D3BC00AF75A0 /* Map */,
 				06D13AF5284A4C3800A359E0 /* Departures */,
@@ -264,10 +292,14 @@
 			files = (
 				065C8CAE28511E0800A129F9 /* RoutesViewModel.swift in Sources */,
 				065C8CB028511EA600A129F9 /* RouteDetailView.swift in Sources */,
+				06537954285CB28A0088E809 /* AddFavoriteView.swift in Sources */,
+				06537957285CB2E00088E809 /* AddFavoriteViewModel.swift in Sources */,
 				06D13ADE284A429600A359E0 /* ContentView.swift in Sources */,
 				06C9FA472851050E00A80444 /* VehicleMapAnnotation.swift in Sources */,
 				065C8CB328511EBB00A129F9 /* RouteDetailViewModel.swift in Sources */,
 				0672D2932850D42A00AF75A0 /* MapView.swift in Sources */,
+				06537950285CAF490088E809 /* FavoritesView.swift in Sources */,
+				06537952285CB18F0088E809 /* FavoritesViewModel.swift in Sources */,
 				06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */,
 				065C8CAD28511E0800A129F9 /* RoutesView.swift in Sources */,
 				06D13B01284E3FE400A359E0 /* Departure.swift in Sources */,
