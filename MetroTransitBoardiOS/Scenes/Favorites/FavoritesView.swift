@@ -13,12 +13,24 @@ struct FavoritesView: View {
     var body: some View {
         VStack {
             HStack {
-                Spacer()
+                TextField("Add a stop", text: $viewModel.addStopText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 Image(systemName: "plus.circle")
-                    .onTapGesture{ viewModel.showAddFavoritePopover.toggle() }
-                    .popover(isPresented: $viewModel.showAddFavoritePopover, content: { AddFavoriteView() })
+                    .onTapGesture(perform: viewModel.addStop)
+            }.padding()
+            List(Array(viewModel.nexTrip.keys), id: \.self) { key in
+                Section("\(viewModel.nexTrip[key]!.stops!.first!.description!) (\(String(key)))") {
+                    if let departures = viewModel.nexTrip[key]!.departures {
+                        ForEach(departures[0...2]) { departure in
+                            Text("\(departure.routeId!) \(departure.departureText!)")
+                        }
+                    } else {
+                        Text("No Departures")
+                    }
+                }
             }
-            
+        }.alert(isPresented: $viewModel.showError) {
+            Alert(title: Text(viewModel.error!))
         }
     }
 }

@@ -59,7 +59,7 @@ final class DeparturesViewModel: ObservableObject {
     @Published var error: String? = nil
 
     init() {
-        metroTransitClient.getRoutes { result in
+        metroTransitClient.nexTrip.getRoutes { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):
@@ -80,7 +80,7 @@ final class DeparturesViewModel: ObservableObject {
     }
 
     func getDirections(for routeId: String) {
-        metroTransitClient.getDirections(routeID: routeId) { result in
+        metroTransitClient.nexTrip.getDirections(routeId: routeId) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let directions):
@@ -99,7 +99,7 @@ final class DeparturesViewModel: ObservableObject {
     }
 
     func getPlaces(for routeId: String, direction: Int) {
-        metroTransitClient.getStops(routeID: routeId, directionID: direction) { result in
+        metroTransitClient.nexTrip.getStops(routeID: routeId, directionID: direction) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):
@@ -123,7 +123,7 @@ final class DeparturesViewModel: ObservableObject {
     }
 
     func getDeparturesByRoute() {
-        metroTransitClient.getNexTrip(routeID: routeSelection, directionID: directionSelection, placeCode: placeCodeSelection) { result in
+        metroTransitClient.nexTrip.getNexTrip(routeID: routeSelection, directionID: directionSelection, placeCode: placeCodeSelection) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let nexTripResult):
@@ -146,7 +146,7 @@ final class DeparturesViewModel: ObservableObject {
             return
         }
 
-        metroTransitClient.getNexTrip(stopID: stopId) { result in
+        metroTransitClient.nexTrip.getNexTrip(stopID: stopId) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):

@@ -12,7 +12,7 @@ final class RoutesViewModel: ObservableObject {
     @Published var routes = [Route]()
 
     init() {
-        MetroTransitClient().getRoutes { result in
+        MetroTransitClient().nexTrip.getRoutes { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let routes):

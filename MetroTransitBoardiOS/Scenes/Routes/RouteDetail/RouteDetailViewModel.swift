@@ -23,7 +23,7 @@ final class RouteDetailViewModel: ObservableObject {
     init(route: Route) {
         self.route = route
 
-        metroTransitClient.getDirections(routeID: route.routeId!) { result in
+        metroTransitClient.nexTrip.getDirections(routeId: route.routeId!) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let err):
@@ -38,7 +38,7 @@ final class RouteDetailViewModel: ObservableObject {
     }
 
     func getStops() {
-        metroTransitClient.getStops(routeID: route.routeId!, directionID: selectedDirection) { result in
+        metroTransitClient.nexTrip.getStops(routeID: route.routeId!, directionID: selectedDirection) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let places):

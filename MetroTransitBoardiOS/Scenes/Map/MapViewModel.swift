@@ -42,7 +42,7 @@ final class MapViewModel: ObservableObject {
     }
 
     @objc func getVehicles() {
-        metroTransitClient.getVehicles(routeID: routeId) { result in
+        metroTransitClient.nexTrip.getVehicles(routeID: routeId) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let vehicles):

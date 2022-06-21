@@ -11,15 +11,7 @@ struct AddFavoriteView: View {
     @ObservedObject var viewModel = AddFavoriteViewModel()
 
     var body: some View {
-        VStack {
-            Text("Pick a stop")
-            Picker("Stop", selection: $viewModel.stopSelection) {
-                SearchBar(text: $viewModel.stopSearchTerm)
-                ForEach(viewModel.filteredStops, id: \.stopId) { stop in
-                    Text(stop.description!).tag(stop.stopId)
-                }
-            }
-        }
+        TextField("Enter stop number", text: $viewModel.stopSearchTerm)
     }
 }
 
