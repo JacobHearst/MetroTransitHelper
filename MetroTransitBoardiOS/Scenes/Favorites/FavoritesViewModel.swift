@@ -13,7 +13,7 @@ final class FavoritesViewModel: ObservableObject {
     private var client = MetroTransitClient()
     private var timer: Timer?
 
-    @Published var nexTrip = [Int: NexTripResult]()
+    @Published var nexTrips = [Int: NexTripResult]()
     @Published var addStopText = ""
     @Published var error: String?
     @Published var showError = false
@@ -39,7 +39,7 @@ final class FavoritesViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let nexTrip):
-                        self.nexTrip[stopId] = nexTrip
+                        self.nexTrips[stopId] = nexTrip
                     case .failure(let error):
                         self.error = error.localizedDescription
                         self.showError = true
@@ -62,8 +62,9 @@ final class FavoritesViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let nexTrip):
-                    self.nexTrip[stopId] = nexTrip
+                    self.nexTrips[stopId] = nexTrip
                     self.favoriteStopIds.append(stopId)
+                    self.addStopText = ""
                     UserDefaults.standard.setValue(self.favoriteStopIds, forKey: "favoriteStops")
                 case .failure(let error):
                     self.error = error.localizedDescription
@@ -79,6 +80,15 @@ final class FavoritesViewModel: ObservableObject {
         }
 
         return departuresList[0...3].map { "\($0.routeId!) in \($0.departureText!)" }.joined(separator: " // ")
+    }
+
+    func deleteStop(_ offset: IndexSet) {
+        for offset in Array(offset) {
+            let stopId = favoriteStopIds[offset]
+            favoriteStopIds.remove(at: offset)
+            UserDefaults.standard.setValue(favoriteStopIds, forKey: "favoriteStops")
+            nexTrips.removeValue(forKey: stopId)
+        }
     }
 
     deinit {

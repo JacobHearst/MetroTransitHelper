@@ -22,13 +22,15 @@ struct RouteDetailView: View {
                     Text(direction.directionName!)
                         .tag(direction.directionId)
                 }
-            }.pickerStyle(SegmentedPickerStyle())
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding([.leading, .trailing])
 
             MapView(routeId: viewModel.route.routeId!)
 
             List(viewModel.places, id: \.placeCode!) { place in
                 Text(place.description!)
-            }
+            }.offset(x: 0, y: -10)
         }.navigationTitle(viewModel.route.routeLabel!)
     }
 }

@@ -12,6 +12,7 @@ struct VehicleMapAnnotation: View {
     var body: some View {
         Image(systemName: "bus")
             .background(.white)
+            .frame(width: 10, height: 10)
     }
 }
 
