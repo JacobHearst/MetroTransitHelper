@@ -62,9 +62,8 @@ final class MapViewModel: ObservableObject {
     func focusMap() {
         let vehicle = vehicles.count > 1 ? findCenterVehicle() : vehicles.first
         let deltas = vehicles.count > 1 ? getDeltas() : (latDelta: 0.005, lonDelta: 0.005)
-        guard let vehicle = vehicle else {
-            return
-        }
+
+        guard let vehicle = vehicle else { return }
 
         region = MKCoordinateRegion(
             center: vehicle.location,

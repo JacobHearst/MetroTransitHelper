@@ -30,7 +30,7 @@ final class DeparturesViewModel: ObservableObject {
                 return
             }
 
-            filteredRoutes = routes.filter { $0.routeLabel!.contains(routeSearchTerm) }
+            filteredRoutes = routes.filter { $0.routeLabel!.lowercased().contains(routeSearchTerm.lowercased()) }
         }
     }
     @Published var filteredRoutes = [Route]()
@@ -51,7 +51,7 @@ final class DeparturesViewModel: ObservableObject {
                 return
             }
 
-            filteredPlaces = places.filter { $0.description!.contains(placeSearchTerm) }
+            filteredPlaces = places.filter { $0.description!.lowercased().contains(placeSearchTerm.lowercased()) }
         }
     }
     @Published var placeCodeSelection = ""

@@ -12,8 +12,11 @@ struct RoutesView: View {
 
     var body: some View {
         NavigationView() {
-            List(viewModel.routes, id: \.routeId!) { route in
-                NavigationLink(route.routeLabel!, destination: RouteDetailView(route: route))
+            VStack {
+                SearchBar(text: $viewModel.routeSearchTerm)
+                List(viewModel.filteredRoutes, id: \.routeId!) { route in
+                    NavigationLink(route.routeLabel!, destination: RouteDetailView(route: route))
+                }
             }.navigationTitle("All Routes")
         }
     }

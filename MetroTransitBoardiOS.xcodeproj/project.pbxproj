@@ -100,6 +100,7 @@
 		0672D28A284FE52000AF75A0 /* SharedUI */ = {
 			isa = PBXGroup;
 			children = (
+				06D13AF6284A4C4300A359E0 /* DeparturesList */,
 				06B265DF28624673001524E3 /* Detail */,
 				0672D28B284FE52C00AF75A0 /* SearchBar.swift */,
 			);
@@ -187,7 +188,6 @@
 		06D13AF5284A4C3800A359E0 /* Departures */ = {
 			isa = PBXGroup;
 			children = (
-				06D13AF6284A4C4300A359E0 /* DeparturesList */,
 				06D13AEF284A437400A359E0 /* DeparturesView.swift */,
 				06D13AF1284A463700A359E0 /* DeparturesViewModel.swift */,
 			);

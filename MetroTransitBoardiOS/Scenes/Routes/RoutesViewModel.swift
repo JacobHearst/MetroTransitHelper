@@ -10,6 +10,17 @@ import MetroTransitKit
 
 final class RoutesViewModel: ObservableObject {
     @Published var routes = [Route]()
+    @Published var filteredRoutes = [Route]()
+    @Published var routeSearchTerm = "" {
+        didSet {
+            guard !routeSearchTerm.isEmpty else {
+                filteredRoutes = routes
+                return
+            }
+
+            filteredRoutes = routes.filter { $0.routeLabel!.lowercased().contains(routeSearchTerm.lowercased()) }
+        }
+    }
 
     init() {
         MetroTransitClient().nexTrip.getRoutes { result in
@@ -17,6 +28,7 @@ final class RoutesViewModel: ObservableObject {
                 switch result {
                 case .success(let routes):
                     self.routes = routes
+                    self.filteredRoutes = routes
                 case .failure(let err):
                     print(err)
                 }
