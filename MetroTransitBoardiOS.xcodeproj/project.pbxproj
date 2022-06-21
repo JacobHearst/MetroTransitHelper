@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		06537950285CAF490088E809 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0653794F285CAF490088E809 /* FavoritesView.swift */; };
 		06537952285CB18F0088E809 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537951285CB18F0088E809 /* FavoritesViewModel.swift */; };
-		06537954285CB28A0088E809 /* AddFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537953285CB28A0088E809 /* AddFavoriteView.swift */; };
-		06537957285CB2E00088E809 /* AddFavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537956285CB2E00088E809 /* AddFavoriteViewModel.swift */; };
 		065C8CAD28511E0800A129F9 /* RoutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAB28511E0800A129F9 /* RoutesView.swift */; };
 		065C8CAE28511E0800A129F9 /* RoutesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAC28511E0800A129F9 /* RoutesViewModel.swift */; };
 		065C8CB028511EA600A129F9 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAF28511EA600A129F9 /* RouteDetailView.swift */; };
@@ -35,8 +33,6 @@
 /* Begin PBXFileReference section */
 		0653794F285CAF490088E809 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		06537951285CB18F0088E809 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
-		06537953285CB28A0088E809 /* AddFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteView.swift; sourceTree = "<group>"; };
-		06537956285CB2E00088E809 /* AddFavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteViewModel.swift; sourceTree = "<group>"; };
 		065C8CAB28511E0800A129F9 /* RoutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesView.swift; sourceTree = "<group>"; };
 		065C8CAC28511E0800A129F9 /* RoutesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesViewModel.swift; sourceTree = "<group>"; };
 		065C8CAF28511EA600A129F9 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
@@ -75,20 +71,10 @@
 		0653794E285CAF350088E809 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				06537955285CB2D00088E809 /* AddFavoriteView */,
 				0653794F285CAF490088E809 /* FavoritesView.swift */,
 				06537951285CB18F0088E809 /* FavoritesViewModel.swift */,
 			);
 			path = Favorites;
-			sourceTree = "<group>";
-		};
-		06537955285CB2D00088E809 /* AddFavoriteView */ = {
-			isa = PBXGroup;
-			children = (
-				06537953285CB28A0088E809 /* AddFavoriteView.swift */,
-				06537956285CB2E00088E809 /* AddFavoriteViewModel.swift */,
-			);
-			path = AddFavoriteView;
 			sourceTree = "<group>";
 		};
 		065C8CAA28511DE800A129F9 /* Routes */ = {
@@ -292,8 +278,6 @@
 			files = (
 				065C8CAE28511E0800A129F9 /* RoutesViewModel.swift in Sources */,
 				065C8CB028511EA600A129F9 /* RouteDetailView.swift in Sources */,
-				06537954285CB28A0088E809 /* AddFavoriteView.swift in Sources */,
-				06537957285CB2E00088E809 /* AddFavoriteViewModel.swift in Sources */,
 				06D13ADE284A429600A359E0 /* ContentView.swift in Sources */,
 				06C9FA472851050E00A80444 /* VehicleMapAnnotation.swift in Sources */,
 				065C8CB328511EBB00A129F9 /* RouteDetailViewModel.swift in Sources */,
@@ -438,7 +422,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MetroTransitBoardiOS/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F8SAUD58HS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetroTransitBoardiOS/Info.plist;
@@ -470,7 +454,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MetroTransitBoardiOS/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F8SAUD58HS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetroTransitBoardiOS/Info.plist;

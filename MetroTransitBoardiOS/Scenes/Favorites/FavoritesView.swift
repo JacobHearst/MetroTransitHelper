@@ -18,20 +18,25 @@ struct FavoritesView: View {
                 Image(systemName: "plus.circle")
                     .onTapGesture(perform: viewModel.addStop)
             }.padding()
-            List(Array(viewModel.nexTrip.keys), id: \.self) { key in
-                Section("\(viewModel.nexTrip[key]!.stops!.first!.description!) (\(String(key)))") {
-                    if let departures = viewModel.nexTrip[key]!.departures {
-                        ForEach(departures[0...2]) { departure in
-                            Text("\(departure.routeId!) \(departure.departureText!)")
-                        }
-                    } else {
-                        Text("No Departures")
-                    }
-                }
-            }
+            Text("Last updated: \(viewModel.lastUpdated)")
+            favoritesList()
         }.alert(isPresented: $viewModel.showError) {
             Alert(title: Text(viewModel.error!))
         }
+    }
+
+    @ViewBuilder func favoritesList() -> some View {
+        List(Array(viewModel.nexTrip.keys), id: \.self) { key in
+            Section("\(viewModel.nexTrip[key]!.stops!.first!.description!) (\(String(key)))") {
+                if let departures = viewModel.nexTrip[key]!.departures {
+                    ForEach(departures[0...2]) { departure in
+                        Text("\(departure.routeId!) \(departure.departureText!)")
+                    }
+                } else {
+                    Text("No Departures")
+                }
+            }
+        }.refreshable { viewModel.updateNexTrips() }
     }
 }
 

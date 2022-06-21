@@ -11,30 +11,39 @@ import MetroTransitKit
 final class FavoritesViewModel: ObservableObject {
     private var favoriteStopIds = [Int]()
     private var client = MetroTransitClient()
+    private var timer: Timer?
 
     @Published var nexTrip = [Int: NexTripResult]()
     @Published var addStopText = ""
     @Published var error: String?
     @Published var showError = false
+    @Published var lastUpdated = ""
 
     init() {
         if let favorites = UserDefaults.standard.array(forKey: "favoriteStops") as? [Int] {
             self.favoriteStopIds = favorites
-            for stopId in favorites {
-                loadNexTrip(for: stopId)
-            }
+            updateNexTrips()
+            self.timer = Timer(timeInterval: 60, target: self, selector: #selector(updateNexTrips), userInfo: nil, repeats: true)
         }
     }
 
-    private func loadNexTrip(for stopId: Int) {
-        client.nexTrip.getNexTrip(stopID: stopId) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let nexTrip):
-                    self.nexTrip[stopId] = nexTrip
-                case .failure(let error):
-                    self.error = error.localizedDescription
-                    self.showError = true
+    @objc func updateNexTrips() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+
+        lastUpdated = formatter.string(from: Date())
+
+        for stopId in self.favoriteStopIds {
+            client.nexTrip.getNexTrip(stopID: stopId) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let nexTrip):
+                        self.nexTrip[stopId] = nexTrip
+                    case .failure(let error):
+                        self.error = error.localizedDescription
+                        self.showError = true
+                    }
                 }
             }
         }
@@ -70,5 +79,10 @@ final class FavoritesViewModel: ObservableObject {
         }
 
         return departuresList[0...3].map { "\($0.routeId!) in \($0.departureText!)" }.joined(separator: " // ")
+    }
+
+    deinit {
+        self.timer?.invalidate()
+        self.timer = nil
     }
 }
