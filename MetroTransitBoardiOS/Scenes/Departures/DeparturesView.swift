@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct DeparturesView: View {
-    @ObservedObject private var viewModel: DeparturesViewModel
-
-    init() {
-        viewModel = DeparturesViewModel()
-    }
+    @StateObject private var viewModel = DeparturesViewModel()
 
     var body: some View {
         NavigationView {
@@ -47,7 +43,7 @@ struct DeparturesView: View {
                     }
 
                     Section(header: Text("Results")) {
-                        DeparturesListView(departures: viewModel.departures)
+                        DeparturesListView(delegate: viewModel, departures: viewModel.departures)
                     }
                 }.navigationTitle("Find Departures")
             }

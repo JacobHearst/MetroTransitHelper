@@ -9,7 +9,7 @@ import SwiftUI
 import MetroTransitKit
 
 struct FavoritesView: View {
-    @ObservedObject var viewModel = FavoritesViewModel()
+    @StateObject var viewModel = FavoritesViewModel()
 
     var body: some View {
         NavigationView {
@@ -39,7 +39,7 @@ struct FavoritesView: View {
             List {
                 ForEach(Array(viewModel.nexTrips.keys), id: \.self) { key in
                     let nexTrip = viewModel.nexTrips[key]!
-                    NavigationLink(destination: StopDetailView(stopId: key, nexTrip: nexTrip),
+                    NavigationLink(destination: StopDetailView(stopId: key),
                                    label: {
                         VStack(alignment: .leading) {
                             Text(nexTrip.stops!.first!.description!).truncationMode(.middle)

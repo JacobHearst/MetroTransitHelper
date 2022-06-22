@@ -9,25 +9,23 @@ import SwiftUI
 import MetroTransitKit
 
 struct StopDetailView: View {
-    var stopId: Int
-    var nexTrip: NexTripResult
+    @StateObject private var viewModel: StopDetailViewModel
+
+    init(stopId: Int) {
+        self._viewModel = .init(wrappedValue: StopDetailViewModel(stopId: stopId))
+    }
 
     var body: some View {
         VStack {
-            if let departures = nexTrip.departures {
-                DeparturesListView(departures: departures)
+            if let departures = viewModel.nexTrip?.departures {
+                DeparturesListView(delegate: viewModel, departures: departures)
             }
         }.navigationTitle("Departures")
     }
 }
 
 struct StopDetailView_Previews: PreviewProvider {
-    static let mockNexTrip = NexTripResult(
-        stops: [],
-        alerts: [],
-        departures: [])
-
     static var previews: some View {
-        StopDetailView(stopId: 123, nexTrip: mockNexTrip)
+        StopDetailView(stopId: 123)
     }
 }

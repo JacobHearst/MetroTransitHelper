@@ -158,3 +158,9 @@ final class DeparturesViewModel: ObservableObject {
         }
     }
 }
+
+extension DeparturesViewModel: DeparturesListDelegate {
+    func refreshDepartures() {
+        getDepartures()
+    }
+}

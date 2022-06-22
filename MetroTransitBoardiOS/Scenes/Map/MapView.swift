@@ -10,10 +10,12 @@ import MapKit
 import MetroTransitKit
 
 struct MapView: View {
-    @ObservedObject private var viewModel: MapViewModel
+    @StateObject private var viewModel: MapViewModel
+    private var title: String
 
-    init(routeId: String, tripId: String? = nil, stopId: String? = nil) {
-        self.viewModel = MapViewModel(routeId: routeId, tripId: tripId, stopId: stopId)
+    init(routeId: String, title: String, tripId: String? = nil, stopId: String? = nil) {
+        self._viewModel = .init(wrappedValue: MapViewModel(routeId: routeId, tripId: tripId, stopId: stopId))
+        self.title = title
     }
 
     var body: some View {
@@ -26,6 +28,6 @@ struct MapView: View {
                     VehicleMapAnnotation()
                 }
             }
-        }
+        }.navigationTitle(title)
     }
 }

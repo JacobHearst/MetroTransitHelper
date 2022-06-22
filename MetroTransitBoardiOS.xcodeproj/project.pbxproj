@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06493FDB28634D8700B26BBF /* StopDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06493FDA28634D8700B26BBF /* StopDetailViewModel.swift */; };
 		06537950285CAF490088E809 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0653794F285CAF490088E809 /* FavoritesView.swift */; };
 		06537952285CB18F0088E809 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06537951285CB18F0088E809 /* FavoritesViewModel.swift */; };
 		065C8CAD28511E0800A129F9 /* RoutesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C8CAB28511E0800A129F9 /* RoutesView.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06493FDA28634D8700B26BBF /* StopDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailViewModel.swift; sourceTree = "<group>"; };
 		0653794F285CAF490088E809 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		06537951285CB18F0088E809 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		065C8CAB28511E0800A129F9 /* RoutesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06493FD928634D6E00B26BBF /* Stop */ = {
+			isa = PBXGroup;
+			children = (
+				06B265E02862468C001524E3 /* StopDetailView.swift */,
+				06493FDA28634D8700B26BBF /* StopDetailViewModel.swift */,
+			);
+			path = Stop;
+			sourceTree = "<group>";
+		};
 		0653794E285CAF350088E809 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,8 +139,8 @@
 		06B265DF28624673001524E3 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				06493FD928634D6E00B26BBF /* Stop */,
 				065C8CB128511EAC00A129F9 /* Route */,
-				06B265E02862468C001524E3 /* StopDetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -298,6 +309,7 @@
 				06537952285CB18F0088E809 /* FavoritesViewModel.swift in Sources */,
 				06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */,
 				065C8CAD28511E0800A129F9 /* RoutesView.swift in Sources */,
+				06493FDB28634D8700B26BBF /* StopDetailViewModel.swift in Sources */,
 				06D13B01284E3FE400A359E0 /* Departure.swift in Sources */,
 				06D13AF0284A437400A359E0 /* DeparturesView.swift in Sources */,
 				06D13ADC284A429600A359E0 /* MetroTransitBoardiOSApp.swift in Sources */,

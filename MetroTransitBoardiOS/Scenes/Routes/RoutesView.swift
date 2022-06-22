@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoutesView: View {
-    @ObservedObject private var viewModel = RoutesViewModel()
+    @StateObject private var viewModel = RoutesViewModel()
 
     var body: some View {
         NavigationView() {

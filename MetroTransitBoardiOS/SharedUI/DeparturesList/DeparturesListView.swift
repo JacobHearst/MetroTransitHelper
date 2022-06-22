@@ -8,12 +8,17 @@
 import SwiftUI
 import MetroTransitKit
 
+protocol DeparturesListDelegate {
+    func refreshDepartures() -> Void
+}
+
 struct DeparturesListView: View {
+    var delegate: DeparturesListDelegate
     var departures: [Departure]
 
     var body: some View {
         List(departures) { departure in
-            NavigationLink(destination: MapView(routeId: departure.routeId!, tripId: departure.tripId), label: {
+            NavigationLink(destination: MapView(routeId: departure.routeId!, title: departure.label, tripId: departure.tripId), label: {
                 HStack {
                     Text(departure.label)
                     Spacer()
@@ -25,12 +30,16 @@ struct DeparturesListView: View {
                         }
                 }
             })
-        }
+        }.refreshable { delegate.refreshDepartures() }
     }
+}
+
+struct DeparturesListDelegate_Previews: DeparturesListDelegate {
+    func refreshDepartures() {}
 }
 
 struct DeparturesListView_Previews: PreviewProvider {
     static var previews: some View {
-        DeparturesListView(departures: [])
+        DeparturesListView(delegate: DeparturesListDelegate_Previews(), departures: [])
     }
 }
