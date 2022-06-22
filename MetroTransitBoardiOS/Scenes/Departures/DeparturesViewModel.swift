@@ -14,7 +14,7 @@ final class DeparturesViewModel: ObservableObject {
 
     @Published var routeSelection = "" {
         didSet {
-            getDirections(for: routeSelection)
+            Task { await getDirections(for: routeSelection) }
         }
     }
     @Published var departuresSourceType = 0
@@ -39,7 +39,7 @@ final class DeparturesViewModel: ObservableObject {
     @Published var directions = [Direction]()
     @Published var directionSelection = 0 {
         didSet {
-            getPlaces(for: routeSelection, direction: directionSelection)
+            Task { await getPlaces(for: routeSelection, direction: directionSelection) }
         }
     }
 
@@ -60,84 +60,91 @@ final class DeparturesViewModel: ObservableObject {
     @Published var error: String? = nil
 
     init() {
-        metroTransitClient.nexTrip.getRoutes { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let err):
-                    self.error = err.localizedDescription
-                case .success(let routes):
+        Task {
+            do {
+                let routes = try await metroTransitClient.nexTrip.getRoutes()
+                DispatchQueue.main.async {
                     self.routes = routes
                     self.filteredRoutes = routes
-                    guard let firstRoute = routes.first else {
-                        print("No routes returned")
-                        return
-                    }
+                }
 
+                guard let firstRoute = routes.first else {
+                    print("No routes returned")
+                    return
+                }
+
+                DispatchQueue.main.async {
                     self.routeSelection = firstRoute.routeId ?? ""
-                    self.getDirections(for: firstRoute.routeId!)
+                }
+
+                await getDirections(for: firstRoute.routeId!)
+            } catch {
+                DispatchQueue.main.async {
+                    self.error = error.localizedDescription
                 }
             }
         }
     }
 
-    func getDirections(for routeId: String) {
-        metroTransitClient.nexTrip.getDirections(routeId: routeId) { result in
+    func getDirections(for routeId: String) async {
+        do {
+            let directions = try await metroTransitClient.nexTrip.getDirections(routeId: routeId)
             DispatchQueue.main.async {
-                switch result {
-                case .success(let directions):
-                    self.directions = directions
-                    guard let firstDirection = directions.first else {
-                        print("No directions for route id: \(routeId)")
-                        return
-                    }
-
-                    self.getPlaces(for: routeId, direction: firstDirection.directionId)
-                case .failure(let err):
-                    self.error = err.localizedDescription
-                }
+                self.directions = directions
             }
+
+            guard let firstDirection = directions.first else {
+                print("No directions for route id: \(routeId)")
+                return
+            }
+
+            await getPlaces(for: routeId, direction: firstDirection.directionId)
+        } catch {
+            self.error = error.localizedDescription
         }
     }
 
-    func getPlaces(for routeId: String, direction: Int) {
-        metroTransitClient.nexTrip.getStops(routeID: routeId, directionID: direction) { result in
+    func getPlaces(for routeId: String, direction: Int) async {
+        do {
+            let places = try await metroTransitClient.nexTrip.getStops(routeID: routeId, directionID: direction)
             DispatchQueue.main.async {
-                switch result {
-                case .failure(let err):
-                    self.error = err.localizedDescription
-                case .success(let places):
-                    self.places = places
-                    self.filteredPlaces = places
-                    self.placeCodeSelection = places.first!.placeCode!
-                }
+                self.places = places
+                self.filteredPlaces = places
+                self.placeCodeSelection = places.first!.placeCode!
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.error = error.localizedDescription
             }
         }
     }
 
     func getDepartures() {
         self.error = nil
-        if departuresSourceType == 0 {
-            getDeparturesByRoute()
-        } else {
-            getDeparturesByStop()
-        }
-    }
-
-    func getDeparturesByRoute() {
-        metroTransitClient.nexTrip.getNexTrip(routeID: routeSelection, directionID: directionSelection, placeCode: placeCodeSelection) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let nexTripResult):
-                    self.nexTrip = nexTripResult
-                    self.departures = nexTripResult.departures ?? []
-                case .failure(let err):
-                    self.error = err.localizedDescription
-                }
+        Task {
+            if departuresSourceType == 0 {
+                await getDeparturesByRoute()
+            } else {
+                await getDeparturesByStop()
             }
         }
     }
 
-    func getDeparturesByStop() {
+    func getDeparturesByRoute() async {
+        do {
+            let nexTripResult = try await metroTransitClient.nexTrip.getNexTrip(routeID: routeSelection, directionID: directionSelection, placeCode: placeCodeSelection)
+            DispatchQueue.main.async {
+                self.nexTrip = nexTripResult
+                self.departures = nexTripResult.departures ?? []
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.error = error.localizedDescription
+            }
+        }
+    }
+
+    func getDeparturesByStop() async {
         guard !stopNumber.isEmpty else {
             error = "Please enter a stop number"
             return
@@ -148,15 +155,15 @@ final class DeparturesViewModel: ObservableObject {
             return
         }
 
-        metroTransitClient.nexTrip.getNexTrip(stopID: stopId) { result in
+        do {
+            let nexTripResult = try await metroTransitClient.nexTrip.getNexTrip(stopID: stopId)
             DispatchQueue.main.async {
-                switch result {
-                case .failure(let err):
-                    self.error = err.localizedDescription
-                case .success(let nexTripResult):
-                    self.nexTrip = nexTripResult
-                    self.departures = nexTripResult.departures ?? []
-                }
+                self.nexTrip = nexTripResult
+                self.departures = nexTripResult.departures ?? []
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.error = error.localizedDescription
             }
         }
     }

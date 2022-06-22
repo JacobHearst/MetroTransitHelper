@@ -22,12 +22,12 @@ final class FavoritesViewModel: ObservableObject {
     init() {
         favoriteStopIds = UserDefaultsService.shared.currentFavorites
         if !favoriteStopIds.isEmpty {
-            updateNexTrips()
+            Task { await updateNexTrips() }
             self.timer = Timer(timeInterval: 60, target: self, selector: #selector(updateNexTrips), userInfo: nil, repeats: true)
         }
     }
 
-    @objc func updateNexTrips() {
+    @objc func updateNexTrips() async {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
@@ -35,15 +35,15 @@ final class FavoritesViewModel: ObservableObject {
         lastUpdated = formatter.string(from: Date())
 
         for stopId in self.favoriteStopIds {
-            client.nexTrip.getNexTrip(stopID: stopId) { result in
+            do {
+                let nexTrip = try await client.nexTrip.getNexTrip(stopID: stopId)
                 DispatchQueue.main.async {
-                    switch result {
-                    case .success(let nexTrip):
-                        self.nexTrips[stopId] = nexTrip
-                    case .failure(let error):
-                        self.error = error.localizedDescription
-                        self.showError = true
-                    }
+                    self.nexTrips[stopId] = nexTrip
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.error = error.localizedDescription
+                    self.showError = true
                 }
             }
         }
@@ -58,16 +58,18 @@ final class FavoritesViewModel: ObservableObject {
             return
         }
 
-        client.nexTrip.getNexTrip(stopID: stopId) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let nexTrip):
+        Task {
+            do {
+                let nexTrip = try await client.nexTrip.getNexTrip(stopID: stopId)
+                DispatchQueue.main.async {
                     self.nexTrips[stopId] = nexTrip
                     self.addStopText = ""
 
                     UserDefaultsService.shared.addFavorite(stopId: stopId)
                     self.favoriteStopIds = UserDefaultsService.shared.currentFavorites
-                case .failure(let error):
+                }
+            } catch {
+                DispatchQueue.main.async {
                     self.error = error.localizedDescription
                     self.showError = true
                 }

@@ -23,15 +23,13 @@ final class RoutesViewModel: ObservableObject {
     }
 
     init() {
-        MetroTransitClient().nexTrip.getRoutes { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let routes):
-                    self.routes = routes
-                    self.filteredRoutes = routes
-                case .failure(let err):
-                    print(err)
-                }
+        Task {
+            do {
+                let routes = try await MetroTransitClient().nexTrip.getRoutes()
+                self.routes = routes
+                self.filteredRoutes = routes
+            } catch {
+                print(error)
             }
         }
     }

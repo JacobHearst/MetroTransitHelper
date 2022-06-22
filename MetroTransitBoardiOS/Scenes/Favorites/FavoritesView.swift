@@ -51,7 +51,7 @@ struct FavoritesView: View {
                         }
                     })
                 }.onDelete(perform: viewModel.deleteStop)
-            }.refreshable { viewModel.updateNexTrips() }
+            }.refreshable { await viewModel.updateNexTrips() }
         }
     }
 

@@ -14,7 +14,7 @@ final class RouteDetailViewModel: ObservableObject {
     @Published var places = [Place]()
     @Published var selectedDirection = 0 {
         didSet {
-            getStops()
+            Task { await getPlaces() }
         }
     }
     @Published var directions = [Direction]()
@@ -23,30 +23,29 @@ final class RouteDetailViewModel: ObservableObject {
     init(route: Route) {
         self.route = route
 
-        metroTransitClient.nexTrip.getDirections(routeId: route.routeId!) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let err):
-                    print(err)
-                case .success(let directions):
+        Task {
+            do {
+                let directions = try await metroTransitClient.nexTrip.getDirections(routeId: route.routeId!)
+                DispatchQueue.main.async {
                     self.directions = directions
                     self.selectedDirection = directions.first!.directionId
-                    self.getStops()
                 }
+
+                await getPlaces()
+            } catch {
+                print(error)
             }
         }
     }
 
-    func getStops() {
-        metroTransitClient.nexTrip.getStops(routeID: route.routeId!, directionID: selectedDirection) { result in
+    func getPlaces() async {
+        do {
+            let places = try await metroTransitClient.nexTrip.getStops(routeID: route.routeId!, directionID: selectedDirection)
             DispatchQueue.main.async {
-                switch result {
-                case .success(let places):
-                    self.places = places
-                case .failure(let err):
-                    print(err)
-                }
+                self.places = places
             }
+        } catch {
+            print(error)
         }
     }
 }

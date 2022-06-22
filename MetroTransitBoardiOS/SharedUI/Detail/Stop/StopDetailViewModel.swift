@@ -16,25 +16,23 @@ final class StopDetailViewModel: ObservableObject {
 
     init(stopId: Int) {
         self.stopId = stopId
-        refreshNexTrip()
+        Task { await refreshNexTrip() }
     }
 
-    func refreshNexTrip() {
-        client.nexTrip.getNexTrip(stopID: stopId) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let nexTrip):
-                DispatchQueue.main.async {
-                    self.nexTrip = nexTrip
-                }
+    func refreshNexTrip() async {
+        do {
+            let nexTrip = try await client.nexTrip.getNexTrip(stopID: stopId)
+            DispatchQueue.main.async {
+                self.nexTrip = nexTrip
             }
+        } catch {
+            print(error)
         }
     }
 }
 
 extension StopDetailViewModel: DeparturesListDelegate {
     func refreshDepartures() {
-        refreshNexTrip()
+        Task { await refreshNexTrip() }
     }
 }

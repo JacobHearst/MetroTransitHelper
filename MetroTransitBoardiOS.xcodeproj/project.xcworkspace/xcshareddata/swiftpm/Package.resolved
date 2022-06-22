@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jacobhearst/metrotransitkit",
       "state" : {
-        "revision" : "f67b93e56df5c9750e258c400539efdc70e89f2b",
-        "version" : "2.0.1"
+        "revision" : "d508170f7a88a81014b3ce18b222209b1139ef46",
+        "version" : "2.1.1"
       }
     }
   ],

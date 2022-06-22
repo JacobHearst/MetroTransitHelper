@@ -37,25 +37,23 @@ final class MapViewModel: ObservableObject {
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
 
-        getVehicles()
+        Task { await getVehicles() }
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(getVehicles), userInfo: nil, repeats: true)
     }
 
-    @objc func getVehicles() {
-        metroTransitClient.nexTrip.getVehicles(routeID: routeId) { result in
+    @objc func getVehicles() async {
+        do {
+            let vehicles = try await metroTransitClient.nexTrip.getVehicles(routeID: routeId)
             DispatchQueue.main.async {
-                switch result {
-                case .success(let vehicles):
-                    guard let tripId = self.tripId else {
-                        self.vehicles = vehicles
-                        return
-                    }
-
-                    self.vehicles = vehicles.filter { $0.tripId == tripId }
-                case .failure(let err):
-                    self.error = err.localizedDescription
+                guard let tripId = self.tripId else {
+                    self.vehicles = vehicles
+                    return
                 }
+
+                self.vehicles = vehicles.filter { $0.tripId == tripId }
             }
+        } catch {
+            self.error = error.localizedDescription
         }
     }
 
