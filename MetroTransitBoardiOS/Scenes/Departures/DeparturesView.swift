@@ -25,15 +25,19 @@ struct DeparturesView: View {
                         } else {
                             TextField("Enter Stop Number", text: $viewModel.stopNumber)
                         }
-                        HStack {
-                            Spacer()
-                            Button("Go", action: viewModel.getDepartures)
+                        Button("Go", action: viewModel.getDepartures)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding(10)
+                            .background(.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        if viewModel.nexTrip != nil {
+                            Button("Add to Favorites", action: viewModel.saveStop)
                                 .frame(minWidth: 0, maxWidth: .infinity)
                                 .padding(10)
-                                .background(.blue)
-                                .foregroundColor(.white)
+                                .background(.yellow)
+                                .foregroundColor(.black)
                                 .cornerRadius(10)
-                            Spacer()
                         }
                     }
 
@@ -50,7 +54,7 @@ struct DeparturesView: View {
         }
     }
 
-    func makeRouteSelector() -> some View {
+    @ViewBuilder func makeRouteSelector() -> some View {
         Group {
             if viewModel.routes.isEmpty {
                 Text("Loading Routes...")

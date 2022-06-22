@@ -9,7 +9,7 @@ import Foundation
 import MetroTransitKit
 
 final class FavoritesViewModel: ObservableObject {
-    private var favoriteStopIds = [Int]()
+    @Published var favoriteStopIds = [Int]()
     private var client = MetroTransitClient()
     private var timer: Timer?
 
@@ -63,8 +63,10 @@ final class FavoritesViewModel: ObservableObject {
                 switch result {
                 case .success(let nexTrip):
                     self.nexTrips[stopId] = nexTrip
-                    self.favoriteStopIds.append(stopId)
                     self.addStopText = ""
+
+                    guard !self.favoriteStopIds.contains(stopId) else { return }
+                    self.favoriteStopIds.append(stopId)
                     UserDefaults.standard.setValue(self.favoriteStopIds, forKey: "favoriteStops")
                 case .failure(let error):
                     self.error = error.localizedDescription

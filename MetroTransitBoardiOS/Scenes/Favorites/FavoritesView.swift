@@ -9,7 +9,7 @@ import SwiftUI
 import MetroTransitKit
 
 struct FavoritesView: View {
-    @StateObject var viewModel = FavoritesViewModel()
+    @ObservedObject var viewModel = FavoritesViewModel()
 
     var body: some View {
         NavigationView {
@@ -33,7 +33,7 @@ struct FavoritesView: View {
 
     @ViewBuilder func favoritesList() -> some View {
         if viewModel.nexTrips.keys.isEmpty {
-            Text("No saved routes")
+            Text("No saved stops")
             Spacer()
         } else {
             List {

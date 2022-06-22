@@ -18,6 +18,7 @@ final class DeparturesViewModel: ObservableObject {
         }
     }
     @Published var departuresSourceType = 0
+    @Published var nexTrip: NexTripResult?
     @Published var departures = [Departure]()
 
     @Published var stopNumber = ""
@@ -127,6 +128,7 @@ final class DeparturesViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let nexTripResult):
+                    self.nexTrip = nexTripResult
                     self.departures = nexTripResult.departures ?? []
                 case .failure(let err):
                     self.error = err.localizedDescription
@@ -152,10 +154,25 @@ final class DeparturesViewModel: ObservableObject {
                 case .failure(let err):
                     self.error = err.localizedDescription
                 case .success(let nexTripResult):
+                    self.nexTrip = nexTripResult
                     self.departures = nexTripResult.departures ?? []
                 }
             }
         }
+    }
+
+    func saveStop() {
+        var currentFavorites = (UserDefaults.standard.array(forKey: "favoriteStops") as? [Int]) ?? [Int]()
+
+        if departuresSourceType == 0,
+           let stop = nexTrip?.stops?.first {
+            currentFavorites.append(stop.stopId)
+        } else if let stopNumber = Int(self.stopNumber),
+                  !currentFavorites.contains(stopNumber) {
+            currentFavorites.append(stopNumber)
+        }
+
+        UserDefaults.standard.setValue(currentFavorites, forKey: "favoriteStops")
     }
 }
 
