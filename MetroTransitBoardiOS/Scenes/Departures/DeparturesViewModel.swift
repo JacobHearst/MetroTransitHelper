@@ -162,17 +162,12 @@ final class DeparturesViewModel: ObservableObject {
     }
 
     func saveStop() {
-        var currentFavorites = (UserDefaults.standard.array(forKey: "favoriteStops") as? [Int]) ?? [Int]()
-
         if departuresSourceType == 0,
            let stop = nexTrip?.stops?.first {
-            currentFavorites.append(stop.stopId)
-        } else if let stopNumber = Int(self.stopNumber),
-                  !currentFavorites.contains(stopNumber) {
-            currentFavorites.append(stopNumber)
+            UserDefaultsService.shared.addFavorite(stopId: stop.stopId)
+        } else if let stopNumber = Int(self.stopNumber) {
+            UserDefaultsService.shared.addFavorite(stopId: stopNumber)
         }
-
-        UserDefaults.standard.setValue(currentFavorites, forKey: "favoriteStops")
     }
 }
 

@@ -30,6 +30,7 @@
 		06D13AF2284A463700A359E0 /* DeparturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13AF1284A463700A359E0 /* DeparturesViewModel.swift */; };
 		06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13AF7284A4C5400A359E0 /* DeparturesListView.swift */; };
 		06D13B01284E3FE400A359E0 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D13B00284E3FE400A359E0 /* Departure.swift */; };
+		06F62C9228637743007F4194 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F62C9128637743007F4194 /* UserDefaultsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		06D13AF1284A463700A359E0 /* DeparturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesViewModel.swift; sourceTree = "<group>"; };
 		06D13AF7284A4C5400A359E0 /* DeparturesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesListView.swift; sourceTree = "<group>"; };
 		06D13B00284E3FE400A359E0 /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
+		06F62C9128637743007F4194 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 		06D13ADA284A429600A359E0 /* MetroTransitBoardiOS */ = {
 			isa = PBXGroup;
 			children = (
+				06F62C9028637738007F4194 /* Services */,
 				0672D28E2850D3E200AF75A0 /* Info.plist */,
 				0672D28A284FE52000AF75A0 /* SharedUI */,
 				06D13AFF284E3FD400A359E0 /* Extensions */,
@@ -220,6 +223,14 @@
 				06C9FA442851029E00A80444 /* Vehicle.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		06F62C9028637738007F4194 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				06F62C9128637743007F4194 /* UserDefaultsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +321,7 @@
 				06D13AF8284A4C5400A359E0 /* DeparturesListView.swift in Sources */,
 				065C8CAD28511E0800A129F9 /* RoutesView.swift in Sources */,
 				06493FDB28634D8700B26BBF /* StopDetailViewModel.swift in Sources */,
+				06F62C9228637743007F4194 /* UserDefaultsService.swift in Sources */,
 				06D13B01284E3FE400A359E0 /* Departure.swift in Sources */,
 				06D13AF0284A437400A359E0 /* DeparturesView.swift in Sources */,
 				06D13ADC284A429600A359E0 /* MetroTransitBoardiOSApp.swift in Sources */,

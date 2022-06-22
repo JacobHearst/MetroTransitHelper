@@ -9,7 +9,7 @@ import Foundation
 import MetroTransitKit
 
 final class FavoritesViewModel: ObservableObject {
-    @Published var favoriteStopIds = [Int]()
+    @Published var favoriteStopIds: [Int]
     private var client = MetroTransitClient()
     private var timer: Timer?
 
@@ -20,8 +20,8 @@ final class FavoritesViewModel: ObservableObject {
     @Published var lastUpdated = ""
 
     init() {
-        if let favorites = UserDefaults.standard.array(forKey: "favoriteStops") as? [Int] {
-            self.favoriteStopIds = favorites
+        favoriteStopIds = UserDefaultsService.shared.currentFavorites
+        if !favoriteStopIds.isEmpty {
             updateNexTrips()
             self.timer = Timer(timeInterval: 60, target: self, selector: #selector(updateNexTrips), userInfo: nil, repeats: true)
         }
@@ -65,9 +65,8 @@ final class FavoritesViewModel: ObservableObject {
                     self.nexTrips[stopId] = nexTrip
                     self.addStopText = ""
 
-                    guard !self.favoriteStopIds.contains(stopId) else { return }
-                    self.favoriteStopIds.append(stopId)
-                    UserDefaults.standard.setValue(self.favoriteStopIds, forKey: "favoriteStops")
+                    UserDefaultsService.shared.addFavorite(stopId: stopId)
+                    self.favoriteStopIds = UserDefaultsService.shared.currentFavorites
                 case .failure(let error):
                     self.error = error.localizedDescription
                     self.showError = true
@@ -76,20 +75,12 @@ final class FavoritesViewModel: ObservableObject {
         }
     }
 
-    func getDepartureOverviewText(_ departuresList: [Departure]?) -> String {
-        guard let departuresList = departuresList else {
-            return "No departures"
-        }
-
-        return departuresList[0...3].map { "\($0.routeId!) in \($0.departureText!)" }.joined(separator: " // ")
-    }
-
     func deleteStop(_ offset: IndexSet) {
         for offset in Array(offset) {
             let stopId = favoriteStopIds[offset]
-            favoriteStopIds.remove(at: offset)
-            UserDefaults.standard.setValue(favoriteStopIds, forKey: "favoriteStops")
             nexTrips.removeValue(forKey: stopId)
+            UserDefaultsService.shared.removeFavorite(stopId: stopId)
+            self.favoriteStopIds = UserDefaultsService.shared.currentFavorites
         }
     }
 
