@@ -26,8 +26,10 @@ final class RoutesViewModel: ObservableObject {
         Task {
             do {
                 let routes = try await MetroTransitClient().nexTrip.getRoutes()
-                self.routes = routes
-                self.filteredRoutes = routes
+                DispatchQueue.main.async {
+                    self.routes = routes
+                    self.filteredRoutes = routes
+                }
             } catch {
                 print(error)
             }
